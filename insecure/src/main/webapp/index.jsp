@@ -5,7 +5,7 @@
   <jsp:directive.page contentType="text/html" pageEncoding="UTF-8" />
   <jsp:output omit-xml-declaration="true" />
   <jsp:output doctype-root-element="HTML"
-              doctype-system="about:legacy-compat" />
+              doctype-system="about:legacy-compat" />            
 <html lang="en">
   <head>
     <title>Hello World</title>
@@ -23,8 +23,15 @@
 
   <body>
     <div class="container">
-        <h1>TODO Secure this</h1>
-        <p>We would like to secure this page</p>
+        <h1>This is secured</h1>
+        <p>
+			Hello <b><c:out value="${pageContext.request.remoteUser}"/></b>
+		</p>
+		<c:url var="logoutUrl" value="/logout"></c:url>
+		<FORM class="form-inline" action="${logoutUrl}" method="POST">
+			<input type="submit" value="Log out"/>
+			<INPUT type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		</FORM>
     </div>
 </body>
 </html>
